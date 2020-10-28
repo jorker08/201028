@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Test {
 	
-	static ReplyDao replyDao = new ReplyDao();
 	static ArticleDao articleDao = new ArticleDao();
+	static ReplyDao replyDao = new ReplyDao();
 	
 	public static void main(String[] args) {
 
@@ -28,7 +28,10 @@ public class Test {
 				System.out.println("게시물 내용을 입력해주세요 :");
 				String body = sc.next();
 				a.setBody(body);
-				a.setNickname("익명");
+				
+				String nickname = "익명"; 
+				a.setNickname(nickname);
+				
 
 				articleDao.insertArticle(a);
 				System.out.println("게시물이 등록되었습니다.");
@@ -119,6 +122,24 @@ public class Test {
 				searchedArticles = articleDao.getSearchedArticlesByFlag(flag, keyword);					
 				
 				printArticles(searchedArticles);
+			}
+			if(cmd.equals("singup")) {
+				System.out.println("===== 회원가입 ======");
+				Member m = new Member();
+				System.out.println("아이디를 입력해주세요 : ");
+				String name = sc.next();
+				m.setName(name);
+
+				System.out.println("비밀번호를 입력해주세요 :");
+				String password = sc.next();
+				m.setPassword(password);
+				
+				System.out.println("닉네임을 입력해주세요 :");
+				String nick = sc.next();
+				m.setNickname(nick);
+
+				
+				
 			}
 		}	
 	}
